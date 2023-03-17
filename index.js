@@ -20,7 +20,7 @@ app.get('/getData/:mode?/:num?', (req, res) => {
 
     if(mode  === "ganjil"){
         for (let i=0; i <= max;  i++){
-            console.log(i)
+      
             if(i % 2 !== 0 ){
                 data.push(i)
             }
@@ -29,27 +29,46 @@ app.get('/getData/:mode?/:num?', (req, res) => {
 
 
     if(mode  === "segitiga"){
-
+     let xnum = 0
+     let nol = "0"
+        for(i=0; i<max.length; ) {
+            
+             xnum =parseInt(xnum)+1;
+             console.log(xnum)
+            for(x=1;  x<xnum; x++) {
+                nol = nol +"0"
+            }
+            if(max[i]){
+                data.push(max[i] + nol)
+         
+            }else{
+                data.push("0" + nol)
+            }
+                
+                i++
+          }
     }
 
 
     if(mode  === "prima"){
-       
-
+            function prima(a){
+                if(a==2) {
+                    return true;
+                }
+                
+                for(let b=2;b<a;b++) {
+                    
+                    if(a%b==0) 
+                    return false;
+                }	
+                return true;
+            }
        
         for (let i=0; i <= max;  i++){
-            console.log(i)
-            let pembagi = 0
-            for (let j=1; j <= i;  j++){
-
-            if( i % 1 ==0){
-                pembagi++
-            }
-
-            if(pembagi === 2){
+            if(prima(i)){
                 data.push(i)
             }
-        }
+        
         }
     }
 
